@@ -1,5 +1,5 @@
 #!/bin/zsh
-WALLPAPERS="./archcraft-wallpapers"
+WALLPAPERS="./wallpapers"
 
 # Get main color from image
 function getcolor {
