@@ -9,9 +9,10 @@ i=1
 # $NF in awk refers to Number of Fields, so basically get the last field
 for file in *; do \
 
-	if [ $(echo $file) = rename.sh ]; then
-		continue
-	fi
+	# do not rename the script itself, skip this iteration
+	[ $(echo $file) = rename.sh ] && continue
+
 	ext=$(echo $file | awk -F. '{print $NF}')
-	mv $file $(printf -v a "%03d" $i; echo $a).$ext && i=$((i+1)); \
+	mv $file $(printf -v a "%03d" $i; echo $a).$ext
+	i=$((i+1)); \
 done
