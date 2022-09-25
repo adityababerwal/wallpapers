@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+i=1
+
+# edu stuff: number formatting in bash using printf
+# 03d => d means decimal number (integers); 3 means the "length" should be 3
+# 0 means fill the remaining length with 0's
+
+for file in *; do \
+	if [ $(echo $file | cut -d'.' -f2) = jpg ]; then
+		mv $file $(printf -v a "%03d" $i; echo $a).jpg && i=$((i+1)); \
+
+	elif [ $(echo $file | cut -d'.' -f2) = jpeg ]; then
+		mv $file $(printf -v a "%03d" $i; echo $a).jpeg && i=$((i+1)); \
+
+	elif [ $(echo $file | cut -d'.' -f2) = png ]; then
+		mv $file $(printf -v a "%03d" $i; echo $a).png && i=$((i+1)); \
+
+	elif [ $(echo $file | cut -d'.' -f2) = PNG ]; then
+		mv $file $(printf -v a "%03d" $i; echo $a).png && i=$((i+1)); \
+
+	elif [ $(echo $file | cut -d'.' -f2) = JPG ]; then
+		mv $file $(printf -v a "%03d" $i; echo $a).jpg && i=$((i+1)); \
+
+	fi
+done
