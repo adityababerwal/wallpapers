@@ -1,18 +1,15 @@
-#!/bin/zsh
+#!/bin/sh
 
 i=1
 
-# edu stuff: number formatting in bash using printf
+# edu stuff: number formatting in sh using printf
 # 03d => d means decimal number (integers); 3 means the "length" should be 3
 # 0 means fill the remaining length with 0's
 
-# $NF in awk refers to Number of Fields, so basically get the last field
-for file in *; do \
+for file in *; do
+	ext=${file##*.} ## greedy matching from beggining, * matches everything untill the last next '.'
+  [ $ext = sh ] && continue
 
-	# do not rename the script itself, skip this iteration
-	[ $(echo $file) = rename.sh ] && continue
-
-	ext=$(echo $file | awk -F. '{print $NF}')
-	mv $file $(printf -v a "%03d" $i; echo $a).$ext
-	i=$((i+1)); \
+	mv "$file" "$(printf "%03d" $i).$ext" 
+  i=$((i+1));
 done
