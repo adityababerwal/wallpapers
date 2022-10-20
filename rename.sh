@@ -10,6 +10,6 @@ for file in *; do
 	ext=${file##*.} ## greedy matching from beggining, * matches everything untill the last next '.'
   [ $ext = sh ] && continue
 
-	mv "$file" "$(printf "%03d" $i).$ext" 
+	mv -n "$file" "$(printf "%03d" $i).$ext" > /dev/null
   i=$((i+1));
 done
