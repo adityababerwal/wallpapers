@@ -9,6 +9,7 @@ i=1
 for file in *; do
 	ext=${file##*.} ## greedy matching from beggining, * matches everything untill the last next '.'
   [ $ext = sh ] && continue
+  [ $file = phone ] && continue
 
 	mv -n "$file" "$(printf "%03d" $i).$ext" > /dev/null
   i=$((i+1));
